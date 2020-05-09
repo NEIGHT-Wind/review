@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <style>
+    .container{
+      display: flex;
+      width: 600px;
+      height: 100px;
+    }
+    .first{
+      height: 100px;
+      width: 500px;
+      flex-shrink: 1;
+    }
+    .last{
+      width: 400px;
+      height: 100px;
+      flex-shrink: 2;
+    }
+
+  </style>
+    
+</head>
+
+<body>
+  
+  <div class="question2">
+    <div class="container">
+      <div class="first"></div>
+      <div class="last"></div>
+    </div>
+  </div>
+
+  <script>
+    // 笔试题 40min
+    function question1 () {
+      Object.prototype.a = 'Object';
+      Function.prototype.a = 'Function';
+      function Person () {}
+      var child = new Person();
+      console.log(child.a);
+      console.log(Person.a);
+      console.log(child.__proto__.__proto__.constructor.constructor.constructor);
+    }
+
+    function question2 () {
+      // 写出first and last 的实际宽度，为什么
+      // 实际想问的是flex-shrink按比例缩小的原理
+    }
+
+    function question3() {
+      // node js
+      setTimeout(() => { console.log('setTimeoyt'); }, 0);
+      setImmediate(() => { console.loog('setimmediate') });
+      // 那个先执行
+      // 放在文件里面那个先执行，不了解这块这个小问的代码忘记了
+      // 引发了另一个小问 一下代码执行顺序
+      setTimeout(() => { console.log('setTimeoyt'); }, 0);
+      Promise.resolve().then((res) => {
+        console.log('p1');
+        Promise.resolve().then((res) => {
+          console.log('p2');
+        })
+      })
+    }
+
+    function question4 () {
+      // 手写Promise.all() 略
+    }
+
+    function question5 () {
+      // 链表题，不理解啥意思，原题忘记了
+      // 引出让我考虑下 链表的反转怎么写
+    }
+
+    // 一面面试题 1hour
+  
+    // 一、制造margin塌陷问题场景，问间隔多少像素
+    // 1、为什么回发生merge塌陷？
+    // 2、如何解决？
+    // 3、什么是bfc？
+    // 4、如何处罚bfc？
+
+    // 二、react 单项数据流 解释一下
+    // 1、解释下 react mvc 模式
+    // 2、react vue 区别 开发上有什么不同？
+
+    // 三、react diff 算法    略
+
+    // 四、常见的网络攻击方式，如何解决， 不会pass
+
+    // 五、详细说下DNS解析过程
+    // 1、讲一下浏览器缓存机制（eg: 静态资源），
+    // 2、浏览器如何找到缓存中的IP地址，（浏览器咋实现的）
+
+    // 六、webStocket 前端如何跟服务端建立连接的，链接过程是怎样的？  不会pass
+
+    // 七、mobx / re dux 的区别
+
+    // 八、发布订阅模式 写一个
+    // 1、改变this 指向 方法
+    // 2、手动写一个bind函数
+    // 3、手动写一个call函数
+
+    // 九、var a; 如何判断是个空对象
+
+
+    // 二面面试题 20min
+
+    // 一、说一下react 虚拟dom
+    // 1、 为什么要用虚拟dom
+    // 2、 react 属于那种 mvc 模式
+
+    // 二、了解过rn 跟 native 是怎么通信的吗？
+
+    // 三、使用rn 最棘手的问题是什么？
+    // 1、在开发中有没有遇到 什么rn 的问题
+
+    // 剩余略 问的都很笼统了， 你对自己的规划， 擅长什么，不擅长什么，为什么离职等等
+
+
+
+    let createStore = (reducer) => {
+    //    state存储(不是管理)着所有状态
+    //    最开始先调用下reducer，以得到最初各组件的默认状态值
+    let state = reducer(); 
+    //     redux的实质其实就是观察者模式，当store里的数据发生变化时，redux会通知所有订阅者
+    //    `istenners`是一个数值，里面就是所有的订阅者
+    let listheners = [];
+    //    getState用于从store中从获取数据
+    let getState = () => {
+         return state;
+    };
+    
+    //     订阅事件，返回一个取消订阅函数
+    let subscribe =  (cb)=>{
+        listhenners.push(cb);
+        return ()=>{
+            listhenners = listhenners.filter(item=>{
+               return  item !== cb
+            });
+        }
+    };
+
+    let dispatch = (action)=>{
+        //     `dispatch`一个action(动作)， 交给纯函数处理
+        state = reducer(state, action);
+        //     当数据发生改变后，通知订阅者
+        listhenners.forEeach(listhener=>{ listhener() });
+    };
+
+   return {
+        getState,
+        subscribe,
+        dispatch
+    }
+}
+export default createStore;
+    
+  </script>
+</body>
+</html>

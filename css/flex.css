@@ -1,0 +1,48 @@
+.grow{
+  display: flex;
+  width: 800px;
+  height: 100px;
+}
+
+.grow .first{
+  flex-grow: 1;
+  width: 400px;
+  background: gray;
+}
+.grow .second{
+  flex-grow: 2;
+  width: 100px;
+  background: green;
+}
+
+/*
+every = (800 - (400 + 100)) / (1 + 2) = 100px
+firstWidth = every * 1 + 400 = 500px
+secondWidth = every * 2 + 100 = 300px
+*/
+
+.shrink{
+  display: flex;
+  width: 800px;
+  height: 100px;
+}
+
+.shrink .first{
+  width: 600px;
+  flex-shrink: 2;
+  background: orange;
+}
+
+.shrink .second{
+  width: 400px;
+  flex-shrink: 1;
+  background: purple;
+}
+
+/* 
+shrinkPx = 600 + 400 - 800 = 200px
+firstShrinkRatio = 600 * 2 / (600 * 2 + 400 * 1) = 12 / 16 = 3 / 4
+secondShrinkRatio = 400 * 1 / (600 * 2 + 400 * 1) = 4 / 16 = 1 / 4
+fristWidth = 600 - shrinkPx * firstShrinkRatio = 450px
+secondWidht = 400 - shrinkPx * secondShrinkRatio = 350px
+*/

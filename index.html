@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/float.css">
+  <link rel="stylesheet" href="./css/layout.css">
+  <link rel="stylesheet" href="./css/flex.css">
+  <style>
+    *{
+      margin: 0px;
+      padding: 0px;
+    }
+    .container{
+      margin: 20px;
+      border: 1px solid black;
+      padding: 20px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="boxContainer">
+    <div class="floatContainer container">
+      <div class="floatElement"></div>
+      <div class="nomalElement"></div>
+      <!-- <div class="otherElement"></div> -->
+    </div>
+  
+    <div class="layoutContainer container">
+      <div class="left-right-layout layout">
+        <div class="left"></div>
+        <div class="right"></div>
+      </div>
+
+      <div class="autoBox">auto</div>
+
+      <div class="center">
+        <div class="centerEle"></div>
+      </div>
+    </div>
+  
+    <div class="flexContainer container">
+      <div class="grow">
+        <div class="first"></div>
+        <div class="second"></div>
+      </div>
+      <dv class="shrink">
+        <div class="first"></div>
+        <div class="second"></div>
+      </dv>
+    </div>
+  </div>
+
+  <ul class="ul1">
+    <li></li>
+    <li></li>
+  </ul>
+
+  <script src="./js/base.js"></script>
+  <script src="./js/design.js"></script>
+  <script src="./js/algorithm.js"></script>
+  <script src="./js/interview.js"></script>
+
+  <script>
+    // defer and async 都是异步
+    // async js文件加载完了就执行，没有先后
+    // defer html文档后续元素解析完了，按顺序执行js
+    // var dom = document.getElementsByClassName('ul1')[0];
+    // console.log(dom);
+    // dom.addEventListener('click', function(e) {
+    //   console.log(e.target === e.currentTarget);
+    //   console.log(e.target);
+    //   console.log(e.currentTarget);
+    //   console.log(this);
+    // })
+
+    // var a = (...args) => {
+    //   console.log(args)
+    // }
+
+    // a(1,2,3)
+
+
+    console.log('1');
+    async function fn () {
+      console.log('a1');
+      await console.log('a2');
+      console.log('a3');
+    }
+    setTimeout(() => {
+      console.log('2')
+    },0);
+    fn();
+    new Promise((resolve) => {
+      console.log('3');
+      resolve();
+    }).then((res) => {
+      console.log('4');
+    })
+
+
+    var name = 'w';
+    function a () {
+      console.log(this.name);
+    }
+
+    var obj = {
+      name: 'obj',
+      b: function (fn) {
+        fn && fn();
+        return function () {
+          console.log(this.name);
+        }
+      }
+    }
+
+
+    var object = {a: 0};
+    function c (obj) {
+      obj.a = 1;
+      obj = {a: 2};
+      obj.b = 2;
+    }
+    c(object);
+    console.log(object);
+
+  </script>
+</body>
+</html>

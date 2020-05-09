@@ -1,0 +1,73 @@
+.layout{
+  width: 100%;
+  margin-bottom: 10px;
+}
+/* 两栏布局 */
+
+/* 方法1 */
+
+/* .left-right-layout::after{
+  clear: both;
+  content: '';
+  display: block;
+}
+
+.left-right-layout .left{
+  float: left;
+  width: 200px;
+  height: 100px;
+  background: pink;
+}
+.left-right-layout .right{
+  margin-left: 200px;
+  height: 100px;
+  background: blue;
+} */
+
+/* 方法2 */
+
+.left-right-layout{
+  display: flex;
+}
+.left-right-layout .left{
+  width: 200px;
+  height: 100px;
+  background: pink
+}
+.left-right-layout .right{
+  flex: 1;
+  height: 100px;
+  background: blue;
+}
+
+/* 相对浏览器自适应宽 */
+
+.autoBox{
+  width: 30%;
+  background: red;
+  overflow: hidden;
+}
+.autoBox::after{
+  content: '';
+  display: block;
+  margin-top: 100%;
+}
+
+.center{
+  width: 400px;
+  height: 400px;
+  border: 1px solid black;
+  margin: 10px;
+}
+
+.centerEle{
+  width: 200px;
+  height: 200px;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  /* margin-top: -100px;
+  margin-left: -100px; */
+  transform: translate(-50%, -50%);
+  background: red;
+}
