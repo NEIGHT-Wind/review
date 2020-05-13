@@ -126,3 +126,30 @@ function myNew(Fn) {
   }
   return obj;
 }
+
+// 解决 scroll 搜索等高频发生的事件回调方法
+// 去抖 debounce delay时间后执行一次
+function debounce(fn, delay) {
+  var timer = null;
+  return function() {
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      fn();
+    }, delay);
+  }
+};
+
+// 节流 throttle delay时间内必执行一次
+function throttle(fn, delay) {
+  var sign = true;
+  return function () {
+    if (!sign) {
+      return;
+    }
+    sign = false;
+    setTimeout(function () {
+      fn(); // fn() 可以放在定时器外面
+      sign = true;
+    }, delay);
+  }
+}
