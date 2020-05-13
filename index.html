@@ -77,55 +77,53 @@
     //   console.log(this);
     // })
 
-    // var a = (...args) => {
-    //   console.log(args)
+    // 练习题
+
+    // var name = 'w';
+    // function a () {
+    //   console.log(this.name);
     // }
-
-    // a(1,2,3)
-
-
-    console.log('1');
-    async function fn () {
-      console.log('a1');
-      await console.log('a2');
-      console.log('a3');
-    }
-    setTimeout(() => {
-      console.log('2')
-    },0);
-    fn();
-    new Promise((resolve) => {
-      console.log('3');
-      resolve();
-    }).then((res) => {
-      console.log('4');
-    })
+    // var obj = {
+    //   name: 'obj',
+    //   b: function (fn) {
+    //     fn && fn();
+    //     return function () {
+    //       console.log(this.name);
+    //     }
+    //   }
+    // }
+    // obj.b(a)();
 
 
-    var name = 'w';
-    function a () {
-      console.log(this.name);
-    }
+    // var object = {a: 0};
+    // function c (obj) {
+    //   obj.a = 1;
+    //   obj = {a: 2};
+    //   obj.b = 2;
+    // }
+    // c(object);
+    // console.log(object);
 
-    var obj = {
-      name: 'obj',
-      b: function (fn) {
-        fn && fn();
-        return function () {
-          console.log(this.name);
-        }
-      }
-    }
-
-
-    var object = {a: 0};
-    function c (obj) {
-      obj.a = 1;
-      obj = {a: 2};
-      obj.b = 2;
-    }
-    c(object);
-    console.log(object);
+    // async function async1() {
+    //   console.log('async1 start'); 
+    //   await async2();
+    //   console.log('async1 end');
+    // }
+    // async function async2() {
+    //   console.log('async2'); 
+    // }
+    // console.log('script start'); 
+    // setTimeout(function() {
+    //   console.log('setTimeout'); 
+    // }, 0);
+    // async1();
+    // new Promise(function(resolve) {
+    //   console.log('promise1'); 
+    //   resolve();
+    // }).then(function() {
+    //   console.log('promise2');
+    // }); 
+    // console.log('script end');
 
   </script>
 </body>
