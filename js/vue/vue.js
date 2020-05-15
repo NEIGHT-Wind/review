@@ -16,13 +16,13 @@ class Dep{ // 发布订阅工具类 每个key有一个Dep
     }
   }
 
-  addDepend() { // 找到当前的watcher，将watch放到自己的Dep里面 watcher里面才有_update
-    Dep.target.addDep(this);
+  depend() { // 找到当前的watcher，将watch放到自己的Dep里面 watcher里面才有_update
+    window.target.addDep(this);
   }
 }
 
-// 全局的静态变量 实际时个[]，储存每个vue实例的watcher，只有init的时候有用
-Dep.target = null;
+// 全局的静态变量，储存每个vue实例的watcher，只有init的时候有用
+window.target = null;
 
 const api = {
   replaceChild(oldElement, element) {
@@ -47,12 +47,15 @@ const api = {
     Object.defineProperty(target, key, {
       get() {
         // 将vue实例中使用的数据，放在自己的dep里面，只有init-render的时候可以add
-        if (Dep.target) {
-          dep.addDepend();
+        if (window.target) {
+          dep.depend();
         }
         return value;
       },
       set(newValue) {
+        if (value === newValue) {
+          return;
+        }
         value = newValue;
         dep.notify();
       }
@@ -68,9 +71,9 @@ class Watcher { // 包了一层 Vue _update
   }
 
   init() {
-    Dep.target = this; // 只有在init 的 render 时候给 每个key的dep添加sub
+    window.target = this; // 只有在init 的 render 时候给 每个key的dep添加sub
     this.getter(); // 会触发 definReactive 时 的get
-    Dep.target = null; // render结束了要把开关关上
+    window.target = null; // render结束了要把开关关上
   }
 
   addDep(dep) {
@@ -150,3 +153,5 @@ class Vue{
     return tag;
   }
 }
+
+// https://vue-js.com/learn-vue/reactive/object.html#_1-%E5%89%8D%E8%A8%80
