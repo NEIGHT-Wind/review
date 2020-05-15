@@ -159,3 +159,34 @@ function testReverseList () {
 
   console.log(reverseList(a));
 }
+
+// 二分查找法
+function dichotomy (arr, value) {
+  var startIndex = 0;
+  var endIndex = arr.length - 1;
+  var midIndex = '';
+
+  function deep () {
+    if (startIndex >= endIndex) {
+      return null;
+    }
+    midIndex = Math.floor((startIndex + endIndex) / 2);
+    if (arr[midIndex] === value) {
+      return midIndex;
+    } else if (arr[midIndex] > value) {
+      endIndex = midIndex - 1;
+    } else if (arr[midIndex] < value) {
+      startIndex = midIndex + 1;
+    }
+    return deep();
+  }
+
+  return deep();
+}
+
+function testDichotomy () {
+  var arr = [1, 4, 7, 8, 12, 34, 67, 88, 99, 100];
+  var findValue = 4;
+  
+  console.log(dichotomy(arr, findValue));
+}
